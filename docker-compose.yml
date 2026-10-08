@@ -1,0 +1,12 @@
+services:
+  acxiomcrm:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: Data Source=/data/acxiomcrm.db
+    volumes:
+      - acxiom-data:/data
+volumes:
+  acxiom-data:

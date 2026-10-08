@@ -1,0 +1,1 @@
+document.querySelectorAll('[data-confirm]').forEach(b=>b.addEventListener('click',e=>{if(!confirm(b.dataset.confirm))e.preventDefault();}));document.querySelectorAll('form').forEach(f=>f.addEventListener('submit',()=>{const b=f.querySelector('button[type="submit"]');if(b){b.disabled=true;b.dataset.old=b.innerText;b.innerText='Working...';}}));

@@ -1,0 +1,2 @@
+using AcxiomCRM.Web.Data;using Microsoft.AspNetCore.Authorization;using Microsoft.AspNetCore.Mvc;using Microsoft.EntityFrameworkCore;
+namespace AcxiomCRM.Web.Controllers;[Authorize(Roles="Admin,Manager")]public class AuditController:Controller{readonly ApplicationDbContext db;public AuditController(ApplicationDbContext d)=>db=d;public async Task<IActionResult>Index(string? action){var q=db.AuditLogs.AsQueryable();if(!string.IsNullOrWhiteSpace(action))q=q.Where(x=>x.Action==action);return View(await q.OrderByDescending(x=>x.CreatedAt).Take(300).ToListAsync());}}

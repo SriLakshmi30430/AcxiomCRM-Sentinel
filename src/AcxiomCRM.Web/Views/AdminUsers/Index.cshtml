@@ -1,0 +1,3 @@
+@model IEnumerable<(ApplicationUser u,string role)> @{ViewData["Title"]="User Administration";}
+<div class="toolbar"><div class="muted">Create users, assign roles and activate/deactivate accounts.</div><a class="btn" href="/AdminUsers/Create">+ User</a></div>
+<div class="panel table-wrap"><table class="table"><thead><tr><th>User</th><th>Role</th><th>Status</th><th>Action</th></tr></thead><tbody>@foreach(var x in Model){<tr><td>@x.u.FullName<br><span class="muted">@x.u.Email</span></td><td>@x.role</td><td>@(x.u.IsActive?"Active":"Inactive")</td><td><form method="post" action="/AdminUsers/Toggle"><input type="hidden" name="id" value="@x.u.Id"><button class="btn secondary">Toggle</button></form></td></tr>}</tbody></table></div>
